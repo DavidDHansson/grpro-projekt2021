@@ -9,7 +9,7 @@ public class HomeController {
     private HomeModel model;
 
     public void initModel(HomeModel model) {
-        if (this.model != null) throw new IllegalStateException("Model can only be initialized once");
+        if (this.model != null) throw new IllegalStateException("Home model can only be initialized once");
         this.model = model;
     }
 
