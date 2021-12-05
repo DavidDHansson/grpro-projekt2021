@@ -12,8 +12,8 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeView.fxml"));
-        Scene scene = new Scene(loader.load(), 320, 240);
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/view/HomeView.fxml"));
+        Scene scene = new Scene(loader.load(), 650, 600);
 
         HomeController controller = loader.getController();
         HomeModel model = new HomeModel();
