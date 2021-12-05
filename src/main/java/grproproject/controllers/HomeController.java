@@ -50,7 +50,6 @@ public class HomeController {
             box.setPadding(new Insets(10, 10, 10, 10));
 
             mainGridPane.add(box, index % 3, Math.floorDiv(index, 3));
-
             index++;
         }
 
