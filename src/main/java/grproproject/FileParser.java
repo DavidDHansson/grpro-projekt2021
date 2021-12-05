@@ -24,11 +24,11 @@ public class FileParser {
     public List<Media> readFile(String mediatype){
 
         List<Media> listOfMedia = new ArrayList();
-        String path = "film.txt";
+        String path = "assets/files/film.txt";
 
         if(mediatype.equals("series")){
 
-            path = "serier.txt";
+            path = "assets/files/serier.txt";
 
         }
 

@@ -37,7 +37,7 @@ public class HomeController {
                 Label genreLabel = new Label("Crime, Drama");
                 Label starsLabel = new Label("★: 9.2");
 
-                URL imageURL = HomeController.class.getResource("/images/TheGodfather.jpg");
+                URL imageURL = HomeController.class.getResource("/assets/images/TheGodfather.jpg");
                 Image image = new Image(String.valueOf(imageURL));
                 ImageView posterImageView = new ImageView(image);
 
