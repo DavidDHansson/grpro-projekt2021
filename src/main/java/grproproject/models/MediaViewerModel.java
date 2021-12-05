@@ -1,4 +1,4 @@
 package grproproject.models;
 
-public class MediaViewerModel {
+public class MediaViewerModel implements Model {
 }

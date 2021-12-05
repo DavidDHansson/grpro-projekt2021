@@ -1,4 +1,4 @@
 package grproproject.models;
 
-public class HomeModel {
+public class HomeModel implements Model {
 }

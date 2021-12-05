@@ -4,7 +4,7 @@ import grproproject.models.MediaViewerModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class MediaViewerController {
+public class MediaViewerController implements Controller {
 
     private MediaViewerModel model;
 
@@ -13,6 +13,11 @@ public class MediaViewerController {
         this.model = model;
     }
 
+    @FXML
+    public void initialize() {
+
+    }
+    
     @FXML
     private Label nowPlayingLabel;
 }

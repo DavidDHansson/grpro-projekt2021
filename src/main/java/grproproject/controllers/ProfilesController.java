@@ -1,18 +1,24 @@
 package grproproject.controllers;
 
+import grproproject.models.HomeModel;
 import grproproject.models.ProfilesModel;
+import grproproject.services.router.Router;
+import grproproject.services.router.Routes;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
 
-public class ProfilesController {
+public class ProfilesController implements Controller {
 
     private ProfilesModel model;
 
-    public void initModel(ProfilesModel model) {
-        if (this.model != null) throw new IllegalStateException("Profiles model can only be initialized once");
-        this.model = model;
+    @FXML
+    public void initialize() {
+
     }
 
     @FXML
-    private HBox mainHBox;
+    void buttonClicked(ActionEvent event) {
+        Router.goTo(Routes.HOME, new HomeModel(), true);
+    }
+
 }

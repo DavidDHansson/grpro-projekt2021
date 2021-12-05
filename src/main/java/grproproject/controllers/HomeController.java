@@ -2,9 +2,14 @@ package grproproject.controllers;
 
 import grproproject.models.HomeModel;
 import grproproject.managers.mediaManager.*;
+import grproproject.models.MediaViewerModel;
+import grproproject.services.router.Router;
+import grproproject.services.router.Routes;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,9 +18,12 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.List;
 
-public class HomeController {
+public class HomeController implements Controller {
 
     private HomeModel model;
+
+    @FXML
+    private Button button;
 
     @FXML
     private GridPane mainGridPane;
@@ -28,6 +36,11 @@ public class HomeController {
     @FXML
     public void initialize() {
         fillGridPane();
+    }
+
+    @FXML
+    void buttonClicked(ActionEvent event) {
+        Router.goTo(Routes.MEDIAVIEWER, new MediaViewerModel(), false);
     }
 
     private void fillGridPane() {

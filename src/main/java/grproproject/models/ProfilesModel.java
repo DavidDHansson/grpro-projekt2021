@@ -1,4 +1,4 @@
 package grproproject.models;
 
-public class ProfilesModel {
+public class ProfilesModel implements Model {
 }

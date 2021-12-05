@@ -2,8 +2,6 @@ package grproproject.managers.mediaManager;
 
 import grproproject.Constants;
 
-import java.util.ArrayList;
-
 public abstract class Media {
 
     protected MediaManager.Type type;
