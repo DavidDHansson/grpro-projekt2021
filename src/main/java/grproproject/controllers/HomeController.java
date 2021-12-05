@@ -46,7 +46,7 @@ public class HomeController implements Controller {
 
     private void fillGridPane() {
 
-        List<Media> media = MediaManager.getInstance().getMedia();
+        List<Media> media = model.getMedia();
 
         int index = 0;
         for(Media m : media) {
