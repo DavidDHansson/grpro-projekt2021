@@ -2,7 +2,6 @@ package grproproject.models;
 
 import grproproject.managers.mediaManager.Media;
 import grproproject.managers.mediaManager.MediaManager;
-
 import java.util.List;
 
 public class HomeModel implements Model {

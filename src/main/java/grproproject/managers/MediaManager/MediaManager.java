@@ -13,13 +13,14 @@ public class MediaManager {
 
     private static MediaManager instance;
     private List<Media> media;
+    public boolean isDoneLoading = false;
 
     public MediaManager() {
         try {
-        List<Media> newMedia = new ArrayList<>();
-        newMedia.addAll(getMedia(Type.MOVIE));
-        newMedia.addAll(getMedia(Type.SERIES));
-        media = newMedia;
+            List<Media> newMedia = new ArrayList<>();
+            newMedia.addAll(loadAndGetMedia(Type.MOVIE));
+            newMedia.addAll(loadAndGetMedia(Type.SERIES));
+            media = newMedia;
         } catch (Exception e) {
             System.out.println("🚨 WARNING: MediaManager failed to load media 🚨");
         }
@@ -30,7 +31,7 @@ public class MediaManager {
         return instance;
     }
 
-    private List<Media> getMedia(Type type) {
+    private List<Media> loadAndGetMedia(Type type) {
 
         List<Media> newMedia = new ArrayList<>();
 
@@ -74,6 +75,7 @@ public class MediaManager {
         }
 
         s.close();
+        isDoneLoading = true;
         return newMedia;
     }
 

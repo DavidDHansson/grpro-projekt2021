@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Router {
 
     private static Stage stage;
@@ -29,7 +31,7 @@ public class Router {
         windowHeight = height;
     }
 
-    public static void goTo(Routes route, Model model, Boolean sameWindow) {
+    public static void goTo(Routes route, Model model, boolean sameWindow) throws IOException  {
         try {
             FXMLLoader loader = new FXMLLoader(new Object() { }.getClass().getResource(route.getPath()));
             Parent root = loader.load();

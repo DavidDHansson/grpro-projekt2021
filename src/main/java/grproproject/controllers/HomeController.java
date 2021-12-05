@@ -16,6 +16,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -24,28 +26,23 @@ public class HomeController implements Controller {
     private HomeModel model;
 
     @FXML
-    private Button button;
-
-    @FXML
     private GridPane mainGridPane;
 
     public void initModel(HomeModel model) {
         if (this.model != null) throw new IllegalStateException("Home model can only be initialized once");
         this.model = model;
-    }
-
-    @FXML
-    public void initialize() {
         fillGridPane();
     }
 
     @FXML
-    void buttonClicked(ActionEvent event) {
+    public void initialize() { }
+
+    @FXML
+    void buttonClicked(ActionEvent event) throws IOException {
         Router.goTo(Routes.MEDIAVIEWER, new MediaViewerModel(), false);
     }
 
     private void fillGridPane() {
-
         List<Media> media = model.getMedia();
 
         int index = 0;
@@ -66,7 +63,6 @@ public class HomeController implements Controller {
             mainGridPane.add(box, index % 3, Math.floorDiv(index, 3));
             index++;
         }
-
     }
 
 
