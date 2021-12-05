@@ -1,4 +1,4 @@
-package grproproject.managers.MediaManager;
+package grproproject.managers.mediaManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,4 +14,11 @@ public class Series extends Media {
         this.seasons = seasons;
     }
 
+    public int getEndYear() {
+        return endYear;
+    }
+
+    public HashMap<Integer, Integer> getSeasons() {
+        return seasons;
+    }
 }

@@ -1,4 +1,4 @@
-package grproproject.managers.MediaManager;
+package grproproject.managers.mediaManager;
 
 import grproproject.Constants;
 import grproproject.services.Helper;

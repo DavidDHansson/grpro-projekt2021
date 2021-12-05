@@ -1,6 +1,7 @@
 package grproproject.controllers;
 
 import grproproject.models.HomeModel;
+import grproproject.managers.mediaManager.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,8 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-
 import java.net.URL;
+import java.util.List;
 
 public class HomeController {
 
@@ -30,24 +31,29 @@ public class HomeController {
     }
 
     private void fillGridPane() {
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 100; j++) {
-                Label titleLabel = new Label("Movie Title");
-                Label yearLabel = new Label("1972");
-                Label genreLabel = new Label("Crime, Drama");
-                Label starsLabel = new Label("★: 9.2");
 
-                URL imageURL = HomeController.class.getResource("/assets/images/TheGodfather.jpg");
-                Image image = new Image(String.valueOf(imageURL));
-                ImageView posterImageView = new ImageView(image);
+        List<Media> media = MediaManager.getInstance().getMedia();
 
-                VBox box = new VBox(titleLabel, yearLabel, genreLabel, starsLabel, posterImageView);
-                box.setAlignment(Pos.CENTER);
-                box.setPadding(new Insets(10, 10, 10, 10));
+        int index = 0;
+        for(Media m : media) {
+            Label titleLabel = new Label(m.getTitle());
+            Label yearLabel = new Label(m.getReleaseYearString());
+            Label genreLabel = new Label(m.getGenresString());
+            Label starsLabel = new Label("★: " + m.getRating());
 
-                mainGridPane.add(box, i, j);
-            }
+            URL imageURL = HomeController.class.getResource(m.getImagePath());
+            Image image = new Image(String.valueOf(imageURL));
+            ImageView posterImageView = new ImageView(image);
+
+            VBox box = new VBox(titleLabel, yearLabel, genreLabel, starsLabel, posterImageView);
+            box.setAlignment(Pos.CENTER);
+            box.setPadding(new Insets(10, 10, 10, 10));
+
+            mainGridPane.add(box, index % 3, Math.floorDiv(index, 3));
+
+            index++;
         }
+
     }
 
 
