@@ -7,10 +7,10 @@ import grproproject.controllers.ProfilesController;
 import grproproject.models.HomeModel;
 import grproproject.models.MediaViewerModel;
 import grproproject.models.Model;
+import grproproject.services.CustomAlert;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class Router {
@@ -54,8 +54,7 @@ public class Router {
             newStage.setTitle(windowTitle);
             newStage.show();
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Oops... an error occurred. Please try again \n\"" + e.getLocalizedMessage() + "\"");
-            alert.showAndWait().ifPresent(res -> System.exit(0));
+            CustomAlert.showError(e.getLocalizedMessage(), () -> System.exit(0));
         }
     }
 
