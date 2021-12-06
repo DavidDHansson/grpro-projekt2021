@@ -2,7 +2,6 @@ package grproproject.services;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -18,7 +17,7 @@ public class Helper {
 
     public static double tryParseToDouble(String value) {
         try {
-            NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+            NumberFormat format = NumberFormat.getInstance(Locale.FRANCE);
             Number number = format.parse(value.trim());
             return number.doubleValue();
         } catch (ParseException e) {

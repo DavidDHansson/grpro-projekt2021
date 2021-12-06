@@ -62,6 +62,7 @@ public class HomeController implements Controller {
 
             mainGridPane.add(box, index % 3, Math.floorDiv(index, 3));
             index++;
+;
         }
     }
 

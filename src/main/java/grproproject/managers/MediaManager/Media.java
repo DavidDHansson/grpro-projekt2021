@@ -41,9 +41,9 @@ public abstract class Media {
     public String getImagePath() {
         switch (type) {
             case MOVIE:
-                return Constants.movieImagePath + title + ".jpg";
+                return Constants.movieImagePath + title + Constants.imageFileType;
             case SERIES:
-                return Constants.seriesImagePath + title + ".jpg";
+                return Constants.seriesImagePath + title + Constants.imageFileType;
         }
 
         return "";
