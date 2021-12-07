@@ -10,12 +10,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,9 +63,14 @@ public class HomeController implements Controller {
 
             VBox box = new VBox(titleLabel, yearLabel, genreLabel, starsLabel, posterImageView);
             box.setAlignment(Pos.CENTER);
+            box.setBorder(new Border(new BorderStroke(Color.BLACK,  BorderStrokeStyle.SOLID, new CornerRadii(20), BorderWidths.DEFAULT)));
             box.setPadding(new Insets(10, 10, 10, 10));
+            box.setCursor(Cursor.HAND);
+            box.setOnMouseClicked(e -> Router.goTo(Routes.MEDIAVIEWER, new MediaViewerModel(m), false));
 
             mainGridPane.add(box, index % 3, Math.floorDiv(index, 3));
+            mainGridPane.setHgap(10);
+            mainGridPane.setVgap(10);
             index++;
         }
     }

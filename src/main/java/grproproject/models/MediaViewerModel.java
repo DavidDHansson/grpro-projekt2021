@@ -1,9 +1,16 @@
 package grproproject.models;
 
+import grproproject.managers.mediaManager.Media;
+
 public class MediaViewerModel implements Model {
 
-    public MediaViewerModel() {
-        // TODO: Implement logic for getting playing Media and also displaying in view
+    private Media media;
+
+    public MediaViewerModel(Media media) {
+        this.media = media;
     }
 
+    public Media getMedia() {
+        return media;
+    }
 }

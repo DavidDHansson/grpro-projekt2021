@@ -25,7 +25,7 @@
       </HBox>
         <ScrollPane fitToHeight="true" minViewportHeight="550.0" minViewportWidth="550.0" prefHeight="200.0" prefViewportHeight="600.0" prefViewportWidth="600.0" prefWidth="200.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
             <content>
-                <GridPane fx:id="mainGridPane" alignment="CENTER" gridLinesVisible="true" maxWidth="800.0" minWidth="550.0" prefWidth="600.0">
+                <GridPane fx:id="mainGridPane" alignment="CENTER" maxWidth="800.0" minWidth="550.0" prefWidth="600.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="180.0" percentWidth="33.0" prefWidth="200.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="180.0" percentWidth="33.0" prefWidth="200.0" />
