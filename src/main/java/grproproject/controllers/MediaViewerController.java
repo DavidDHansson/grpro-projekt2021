@@ -21,12 +21,12 @@ public class MediaViewerController implements Controller {
     public void initModel(MediaViewerModel model) {
         if (this.model != null) throw new IllegalStateException("Home model can only be initialized once");
         this.model = model;
+
+        nowPlayingLabel.setText("Now playing: " + model.getMedia().getTitle());
     }
 
     @FXML
-    public void initialize() {
-        nowPlayingLabel.setText("Maximize screen");
-    }
+    public void initialize() { }
 
     @FXML
     public void fullscreenButtonClicked(ActionEvent event) {
