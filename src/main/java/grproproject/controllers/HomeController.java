@@ -28,25 +28,29 @@ public class HomeController implements Controller {
     @FXML
     private GridPane mainGridPane;
 
-    public void initModel(HomeModel model) {
-        if (this.model != null) throw new IllegalStateException("Home model can only be initialized once");
-        this.model = model;
-        fillGridPane();
-    }
+    @FXML
+    private Label activeUserLabel;
 
     @FXML
     public void initialize() { }
 
     @FXML
-    void buttonClicked(ActionEvent event) throws IOException {
-        Router.goTo(Routes.MEDIAVIEWER, new MediaViewerModel(), false);
+    void changeUserAction(ActionEvent event) {
+        Router.goTo(Routes.PROFILES, null, false);
+    }
+
+    public void initModel(HomeModel model) {
+        if (this.model != null) throw new IllegalStateException("Home model can only be initialized once");
+        this.model = model;
+        activeUserLabel.setText(model.getUserName());
+        fillGridPane();
     }
 
     private void fillGridPane() {
         List<Media> media = model.getMedia();
 
         int index = 0;
-        for(Media m : media) {
+        for (Media m : media) {
             Label titleLabel = new Label(m.getTitle());
             Label yearLabel = new Label(m.getReleaseYearString());
             Label genreLabel = new Label(m.getGenresString());
@@ -62,9 +66,7 @@ public class HomeController implements Controller {
 
             mainGridPane.add(box, index % 3, Math.floorDiv(index, 3));
             index++;
-;
         }
     }
-
 
 }

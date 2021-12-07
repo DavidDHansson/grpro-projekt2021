@@ -2,14 +2,27 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grproproject.controllers.HomeController">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grproproject.controllers.HomeController">
     <children>
-      <Button fx:id="button" mnemonicParsing="false" onAction="#buttonClicked" text="Button" />
+      <HBox prefHeight="45.0" prefWidth="567.0">
+         <children>
+            <Label fx:id="activeUserLabel" prefHeight="51.0" text="Label">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Pane prefHeight="45.0" prefWidth="49.0" />
+            <Button mnemonicParsing="false" onAction="#changeUserAction" prefHeight="45.0" prefWidth="97.0" text="Change user" />
+         </children>
+      </HBox>
         <ScrollPane fitToHeight="true" minViewportHeight="550.0" minViewportWidth="550.0" prefHeight="200.0" prefViewportHeight="600.0" prefViewportWidth="600.0" prefWidth="200.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
             <content>
                 <GridPane fx:id="mainGridPane" alignment="CENTER" gridLinesVisible="true" maxWidth="800.0" minWidth="550.0" prefWidth="600.0">

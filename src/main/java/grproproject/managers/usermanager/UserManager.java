@@ -37,7 +37,6 @@ public class UserManager {
         }
 
         activeUser = users.get(index);
-        System.out.println("New active user " + activeUser.getName());
     }
 
     public void addUser(User user) {

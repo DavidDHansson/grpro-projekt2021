@@ -18,4 +18,8 @@ public class HomeModel implements Model {
     public List<Media> getMedia() {
         return media;
     }
+
+    public String getUserName() {
+        return userName;
+    }
 }
