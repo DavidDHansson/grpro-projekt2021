@@ -66,7 +66,8 @@ public class HomeController implements Controller {
             box.setBorder(new Border(new BorderStroke(Color.BLACK,  BorderStrokeStyle.SOLID, new CornerRadii(20), BorderWidths.DEFAULT)));
             box.setPadding(new Insets(10, 10, 10, 10));
             box.setCursor(Cursor.HAND);
-            box.setOnMouseClicked(e -> Router.goTo(Routes.MEDIAVIEWER, new MediaViewerModel(m), false));
+            box.setOnMouseClicked(e ->
+                    Router.goTo(Routes.MEDIAVIEWER, new MediaViewerModel(m), false, 600, 350));
 
             mainGridPane.add(box, index % 3, Math.floorDiv(index, 3));
             mainGridPane.setHgap(10);

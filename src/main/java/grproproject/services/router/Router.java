@@ -31,7 +31,7 @@ public class Router {
         windowHeight = height;
     }
 
-    public static void goTo(Routes route, Model model, boolean sameWindow) {
+    public static void goTo(Routes route, Model model, boolean sameWindow, double width, double height) {
         try {
             FXMLLoader loader = new FXMLLoader(new Object() { }.getClass().getResource(route.getPath()));
             Parent root = loader.load();
@@ -52,12 +52,16 @@ public class Router {
             }
 
             Stage newStage = sameWindow ? stage : new Stage();
-            newStage.setScene(new Scene(root, windowWidth, windowHeight));
+            newStage.setScene(new Scene(root, width, height));
             newStage.setTitle(windowTitle);
             newStage.show();
         } catch (Exception e) {
             CustomAlert.showError(e.getLocalizedMessage(), () -> System.exit(0));
         }
+    }
+
+    public static void goTo(Routes route, Model model, boolean sameWindow) {
+        goTo(route, model, sameWindow, windowWidth, windowHeight);
     }
 
 }
