@@ -31,7 +31,7 @@ public class Router {
         windowHeight = height;
     }
 
-    public static void goTo(Routes route, Model model, boolean sameWindow) throws IOException  {
+    public static void goTo(Routes route, Model model, boolean sameWindow) {
         try {
             FXMLLoader loader = new FXMLLoader(new Object() { }.getClass().getResource(route.getPath()));
             Parent root = loader.load();

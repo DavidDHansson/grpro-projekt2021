@@ -12,6 +12,7 @@ public class UserManager {
 
     private static UserManager instance;
     private ArrayList<User> users;
+    private User activeUser;
 
     public UserManager() {
         loadUsersFromDisk();
@@ -22,12 +23,30 @@ public class UserManager {
         return instance;
     }
 
+    public User getActiveUser() {
+        return activeUser;
+    }
+
+    public void setActiveUser(String id) {
+        int index = -100;
+        for(int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().contains(id))  {
+                index = i;
+                break;
+            }
+        }
+
+        activeUser = users.get(index);
+        System.out.println("New active user " + activeUser.getName());
+    }
+
     public void addUser(User user) {
         users.add(user);
+        setActiveUser(user.getId());
         saveUsersToDisk();
     }
 
-    public void removeUser(String id) {
+    public void deleteUser(String id) {
         users.removeIf(user -> user.getId().contains(id));
         saveUsersToDisk();
     }
@@ -71,12 +90,13 @@ public class UserManager {
         try {
             // Replace the users.txt
             FileWriter fileWriter = new FileWriter("users.txt", false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             for (User u : users) {
-                fileWriter.write(u.getId() + " " + u.getName() + "\n");
+                bufferedWriter.write(u.getId() + " " + u.getName() + "\n");
             }
 
-            fileWriter.close();
+            bufferedWriter.close();
         } catch (Exception e) {
             CustomAlert.showError(e.getLocalizedMessage());
         }
