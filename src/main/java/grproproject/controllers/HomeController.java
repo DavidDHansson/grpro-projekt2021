@@ -61,7 +61,10 @@ public class HomeController implements Controller {
             Image image = new Image(String.valueOf(imageURL));
             ImageView posterImageView = new ImageView(image);
 
-            VBox box = new VBox(titleLabel, yearLabel, genreLabel, starsLabel, posterImageView);
+            Button addToListButton = new Button("Add to favorites");
+            addToListButton.setOnMouseClicked(e -> System.out.println("Added to fav")); // TODO: logic for this
+
+            VBox box = new VBox(titleLabel, yearLabel, genreLabel, starsLabel, posterImageView, addToListButton);
             box.setAlignment(Pos.CENTER);
             box.setBorder(new Border(new BorderStroke(Color.BLACK,  BorderStrokeStyle.SOLID, new CornerRadii(20), BorderWidths.DEFAULT)));
             box.setPadding(new Insets(10, 10, 10, 10));
