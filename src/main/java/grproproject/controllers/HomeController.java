@@ -37,7 +37,7 @@ public class HomeController implements Controller {
 
     @FXML
     void changeUserAction(ActionEvent event) {
-        Router.goTo(Routes.PROFILES, null, false);
+        Router.goTo(Routes.PROFILES, null, true);
     }
 
     public void initModel(HomeModel model) {
