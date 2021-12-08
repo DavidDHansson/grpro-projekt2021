@@ -24,7 +24,7 @@ public class UserManager {
     }
 
     public void setActiveUser(String id) {
-        int index = -100;
+        int index = -1;
         for(int i = 0; i < users.size(); i++) {
             if (users.get(i).getId().contains(id))  {
                 index = i;
