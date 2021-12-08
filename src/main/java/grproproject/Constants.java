@@ -8,5 +8,8 @@ public class Constants {
     public static String imageFileType = ".jpg";
     public static String encoding = "UTF-8";
 
+    public static String fileExtension = ".txt";
+    public static String usersFile = "users.txt";
+
     public static String viewPath = "/view/";
 }
