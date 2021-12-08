@@ -90,7 +90,7 @@ public class UserManager {
         return activeUserFavorites;
     }
 
-    private Boolean isActiveUserSet() {
+    private boolean isActiveUserSet() {
         return activeUser != null;
     }
 

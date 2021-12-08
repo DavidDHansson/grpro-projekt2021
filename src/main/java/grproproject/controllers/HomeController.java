@@ -37,19 +37,17 @@ public class HomeController implements Controller {
     @FXML
     public void initialize() { }
 
-    @FXML
-    void changeUserAction(ActionEvent event) {
-        Router.goTo(Routes.PROFILES, null, true);
-    }
-
     public void initModel(HomeModel model) {
         if (this.model != null) throw new IllegalStateException("Home model can only be initialized once");
         this.model = model;
         activeUserLabel.setText(model.getUserName());
-        fillGridPane();
+        updateGridPane();
     }
 
-    private void fillGridPane() {
+    private void updateGridPane() {
+
+        mainGridPane.getChildren().clear();
+
         List<Media> media = model.getMedia();
 
         int index = 0;
@@ -63,13 +61,13 @@ public class HomeController implements Controller {
             Image image = new Image(String.valueOf(imageURL));
             ImageView posterImageView = new ImageView(image);
 
-            Button addToListButton = new Button(getIsFavorite(m.getTitle()) ? "Remove from favorites" : "Add to favorites");
+            Button addToListButton = new Button(model.isMediaFavorite(m.getTitle()) ? "Remove from favorites" : "Add to favorites");
             addToListButton.setOnMouseClicked(e ->  {
-                Boolean isFavorite = getIsFavorite(m.getTitle());
-                addToListButton.setText(!isFavorite ? "Remove from favorites" : "Add to favorites");
+                Boolean isFavorite = model.isMediaFavorite(m.getTitle());
 
-                if(isFavorite) model.removeFavorite(m.getTitle());
-                if (!isFavorite) model.addFavorite(m.getTitle());
+                addToListButton.setText(!isFavorite ? "Remove from favorites" : "Add to favorites");
+                if(isFavorite) model.removeFavorite(m);
+                if (!isFavorite) model.addFavorite(m);
             });
 
             VBox box = new VBox(titleLabel, yearLabel, genreLabel, starsLabel, posterImageView, addToListButton);
@@ -87,8 +85,16 @@ public class HomeController implements Controller {
         }
     }
 
-    private boolean getIsFavorite(String mediaTitle) {
-        return model.getFavoriteMediaString().contains(mediaTitle);
+    @FXML
+    void changeUserAction(ActionEvent event) {
+        Router.goTo(Routes.PROFILES, null, true);
     }
+
+    @FXML
+    void toggleFavorite(ActionEvent event) {
+        model.toggleFavoriteOnly();
+        updateGridPane();
+    }
+
 
 }

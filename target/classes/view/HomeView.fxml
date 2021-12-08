@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grproproject.controllers.HomeController">
     <children>
@@ -21,6 +22,12 @@
             </Label>
             <Pane prefHeight="45.0" prefWidth="49.0" />
             <Button mnemonicParsing="false" onAction="#changeUserAction" prefHeight="45.0" prefWidth="97.0" text="Change user" />
+            <Pane prefHeight="45.0" prefWidth="19.0" />
+            <Button mnemonicParsing="false" onAction="#toggleFavorite" prefHeight="45.0" prefWidth="43.0" text="Fav">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
         <ScrollPane fitToHeight="true" minViewportHeight="550.0" minViewportWidth="550.0" prefHeight="200.0" prefViewportHeight="600.0" prefViewportWidth="600.0" prefWidth="200.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">

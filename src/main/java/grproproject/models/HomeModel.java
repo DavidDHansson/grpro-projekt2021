@@ -2,7 +2,6 @@ package grproproject.models;
 
 import grproproject.managers.mediaManager.Media;
 import grproproject.managers.mediaManager.MediaManager;
-import grproproject.managers.usermanager.User;
 import grproproject.managers.usermanager.UserManager;
 
 import java.util.ArrayList;
@@ -14,31 +13,38 @@ public class HomeModel implements Model {
     private List<Media> favoriteMedia;
     private List<String> favoriteMediaString;
     private String userName;
+    private boolean isShowingFavorite = false;
 
     public HomeModel(String userName) {
         this.userName = userName;
         media = MediaManager.getInstance().getMedia();
-        favoriteMediaString = UserManager.getInstance().getFavoritesFromActiveUser();
+        loadFavoriteMedia();
     }
 
     public List<Media> getMedia() {
-        return media;
+        return isShowingFavorite ? favoriteMedia : media;
     }
-
-    public List<Media> getFavoriteMedia() { return favoriteMedia; }
-
-    public List<String> getFavoriteMediaString() { return favoriteMediaString; }
 
     public String getUserName() { return userName; }
 
-    public void addFavorite(String mediaTitle) {
-        UserManager.getInstance().addFavoriteToActiveUser(mediaTitle);
-        loadFavoriteMedia();
+    public void addFavorite(Media media) {
+        UserManager.getInstance().addFavoriteToActiveUser(media.getTitle());
+        favoriteMedia.add(media);
+        favoriteMediaString.add(media.getTitle());
     }
 
-    public void removeFavorite(String mediaTitle) {
-        UserManager.getInstance().removeFavoriteFromActiveUser(mediaTitle);
-        loadFavoriteMedia();
+    public void removeFavorite(Media media) {
+        UserManager.getInstance().removeFavoriteFromActiveUser(media.getTitle());
+        favoriteMedia.removeIf(title -> title.equals(media));
+        favoriteMediaString.removeIf(title -> title.equals(media.getTitle()));
+    }
+
+    public boolean isMediaFavorite(String mediaTitle) {
+        return favoriteMediaString.contains(mediaTitle);
+    }
+
+    public void toggleFavoriteOnly() {
+        isShowingFavorite = !isShowingFavorite;
     }
 
     private void loadFavoriteMedia() {
