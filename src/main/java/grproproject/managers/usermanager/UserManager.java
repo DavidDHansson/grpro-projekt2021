@@ -1,18 +1,24 @@
 package grproproject.managers.usermanager;
 
+import grproproject.managers.mediaManager.Media;
 import grproproject.services.CustomAlert;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class UserManager {
 
     private static UserManager instance;
     private ArrayList<User> users;
     private User activeUser;
+    private List<String> activeUserFavorites;
 
     public UserManager() {
         loadUsersFromDisk();
@@ -26,13 +32,12 @@ public class UserManager {
     public void setActiveUser(String id) {
         int index = -1;
         for(int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId().contains(id))  {
-                index = i;
-                break;
-            }
+            if (users.get(i).getId().contains(id))  { index = i; break; }
         }
 
         activeUser = users.get(index);
+
+        loadActiveFavoritesFromDisk();
     }
 
     public void addUser(User user) {
@@ -43,6 +48,7 @@ public class UserManager {
 
     public void deleteUser(String id) {
         users.removeIf(user -> user.getId().contains(id));
+        deleteFavoritesFromDisk(id);
         saveUsersToDisk();
     }
 
@@ -66,6 +72,48 @@ public class UserManager {
         return users;
     }
 
+    public void addFavoriteToActiveUser(String mediaTitle) {
+        if (!isActiveUserSet() || activeUserFavorites.contains(mediaTitle)) return;
+        activeUserFavorites.add(mediaTitle);
+        saveActiveFavoritesToDisk();
+    }
+
+    public void removeFavoriteFromActiveUser(String mediaTitle) {
+        activeUserFavorites.removeIf(title -> title.equals(mediaTitle));
+        saveActiveFavoritesToDisk();
+    }
+
+    public List<String> getFavoritesFromActiveUser() {
+        if (!isActiveUserSet()) return new ArrayList<>();
+
+        return activeUserFavorites;
+    }
+
+    private Boolean isActiveUserSet() {
+        return activeUser != null;
+    }
+
+    private void deleteFavoritesFromDisk(String id) {
+        activeUserFavorites = new ArrayList<>();
+
+        File favoritesFile = new File(id + ".txt");
+        favoritesFile.delete();
+    }
+
+    private void loadActiveFavoritesFromDisk() {
+        if (!isActiveUserSet()) return;
+        activeUserFavorites = new ArrayList<>();
+
+        try {
+            Scanner s = new Scanner(new File(activeUser.getId() + ".txt"));
+            while (s.hasNextLine()) {
+                activeUserFavorites.add(s.nextLine());
+            }
+        } catch (Exception e) {
+            return;
+        }
+    }
+
     private void loadUsersFromDisk() {
         users = new ArrayList<>();
 
@@ -78,6 +126,22 @@ public class UserManager {
         } catch (Exception e) {
             users.add(new User("Default user"));
             saveUsersToDisk();
+        }
+    }
+
+    private void saveActiveFavoritesToDisk() {
+        try {
+            // Append to users favorites
+            FileWriter fileWriter = new FileWriter(activeUser.getId() + ".txt", false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for(String title : activeUserFavorites) {
+                bufferedWriter.write(title + "\n");
+            }
+
+            bufferedWriter.close();
+        } catch (Exception e) {
+            CustomAlert.showError(e.getLocalizedMessage());
         }
     }
 
