@@ -47,7 +47,7 @@ public class ProfilesController implements Controller {
     private void fillProfilesHBox() {
 
         // Users
-        for(User u : UserManager.getInstance().getUsers()) {
+        for(User u : model.getUsers()) {
             Label nameLabel = new Label(u.getName());
             nameLabel.setFont(new Font(18));
 

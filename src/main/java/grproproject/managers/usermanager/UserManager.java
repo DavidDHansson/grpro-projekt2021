@@ -23,10 +23,6 @@ public class UserManager {
         return instance;
     }
 
-    public User getActiveUser() {
-        return activeUser;
-    }
-
     public void setActiveUser(String id) {
         int index = -100;
         for(int i = 0; i < users.size(); i++) {

@@ -1,4 +1,4 @@
-module projekt.grproprojekt {
+module grproprojekt {
     requires javafx.controls;
     requires javafx.fxml;
 

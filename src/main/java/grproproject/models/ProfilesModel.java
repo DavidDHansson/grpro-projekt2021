@@ -5,9 +5,15 @@ import grproproject.managers.usermanager.UserManager;
 import grproproject.services.router.Router;
 import grproproject.services.router.Routes;
 
+import java.util.List;
+
 public class ProfilesModel implements Model {
 
     public ProfilesModel() { }
+
+    public List<User> getUsers() {
+        return UserManager.getInstance().getUsers();
+    }
 
     public void setUser(User user) {
         UserManager.getInstance().setActiveUser(user.getId());
