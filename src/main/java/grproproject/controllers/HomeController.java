@@ -6,7 +6,6 @@ import grproproject.models.MediaViewerModel;
 import grproproject.services.CustomAlert;
 import grproproject.services.router.Router;
 import grproproject.services.router.Routes;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -65,7 +64,7 @@ public class HomeController implements Controller {
 
             Button addToListButton = new Button(model.isMediaFavorite(m.getTitle()) ? "Remove from favorites" : "Add to favorites");
             addToListButton.setOnMouseClicked(e ->  {
-                Boolean isFavorite = model.isMediaFavorite(m.getTitle());
+                boolean isFavorite = model.isMediaFavorite(m.getTitle());
 
                 addToListButton.setText(!isFavorite ? "Remove from favorites" : "Add to favorites");
                 if(isFavorite) model.removeFavorite(m);
@@ -109,12 +108,12 @@ public class HomeController implements Controller {
     }
 
     @FXML
-    void changeUserAction(ActionEvent event) {
+    void changeUserAction() {
         Router.goTo(Routes.PROFILES, null, true);
     }
 
     @FXML
-    void toggleFavorite(ActionEvent event) {
+    void toggleFavorite() {
         model.toggleFavoriteOnly();
         updateGridPane();
     }
