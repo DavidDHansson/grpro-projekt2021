@@ -14,7 +14,7 @@ public class Main extends Application {
         try {
 
             // Setup router
-            Router.setup(stage, "Streaming service", 650, 600);
+            Router.setup(stage, "Streaming service", 950, 600);
 
             // Route to Profiles
             Router.goTo(Routes.PROFILES, null, true);

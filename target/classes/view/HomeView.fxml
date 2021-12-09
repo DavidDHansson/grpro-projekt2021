@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grproproject.controllers.HomeController">
+<VBox alignment="CENTER" prefHeight="612.0" prefWidth="948.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grproproject.controllers.HomeController">
     <children>
       <HBox prefHeight="45.0" prefWidth="567.0">
          <children>
@@ -25,14 +25,14 @@
             <Separator prefHeight="2.0" prefWidth="21.0" />
             <Button mnemonicParsing="false" onAction="#changeUserAction" prefHeight="45.0" prefWidth="97.0" text="Change user" />
             <Separator prefHeight="2.0" prefWidth="21.0" />
-            <Button mnemonicParsing="false" onAction="#toggleFavorite" prefHeight="45.0" prefWidth="43.0" text="Fav">
+            <Button mnemonicParsing="false" onAction="#toggleFavorite" prefHeight="45.0" prefWidth="139.0" text="Toggle favorite only">
                <font>
                   <Font size="12.0" />
                </font>
             </Button>
             <Separator prefHeight="2.0" prefWidth="21.0" />
             <ChoiceBox fx:id="genreChoiceBox" prefHeight="45.0" prefWidth="124.0" />
-            <Separator prefHeight="5.0" prefWidth="35.0" />
+            <Separator />
             <TextField fx:id="searchTextField" alignment="CENTER_RIGHT" onKeyReleased="#searchTextFieldTextChanged" prefHeight="45.0" prefWidth="165.0" promptText="Search" />
          </children>
       </HBox>
