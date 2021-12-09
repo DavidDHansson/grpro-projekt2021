@@ -13,8 +13,10 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -33,6 +35,9 @@ public class HomeController implements Controller {
 
     @FXML
     private ChoiceBox<String> genreChoiceBox;
+
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     public void initialize() { }
@@ -118,5 +123,10 @@ public class HomeController implements Controller {
         updateGridPane();
     }
 
+    @FXML
+    void searchTextFieldTextChanged(KeyEvent event) {
+        model.searchWithQuery(searchTextField.getText());
+        updateGridPane();
+    }
 
 }

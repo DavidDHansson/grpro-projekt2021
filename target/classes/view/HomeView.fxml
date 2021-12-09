@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -30,7 +31,9 @@
                </font>
             </Button>
             <Separator prefHeight="2.0" prefWidth="21.0" />
-            <ChoiceBox fx:id="genreChoiceBox" prefHeight="50.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="genreChoiceBox" prefHeight="45.0" prefWidth="124.0" />
+            <Separator prefHeight="5.0" prefWidth="35.0" />
+            <TextField fx:id="searchTextField" alignment="CENTER_RIGHT" onKeyReleased="#searchTextFieldTextChanged" prefHeight="45.0" prefWidth="165.0" promptText="Search" />
          </children>
       </HBox>
         <ScrollPane fitToHeight="true" minViewportHeight="550.0" minViewportWidth="550.0" prefHeight="200.0" prefViewportHeight="600.0" prefViewportWidth="600.0" prefWidth="200.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">

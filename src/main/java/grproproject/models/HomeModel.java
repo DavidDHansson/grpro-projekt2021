@@ -7,6 +7,7 @@ import grproproject.managers.usermanager.UserManager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HomeModel implements Model {
 
@@ -86,6 +87,25 @@ public class HomeModel implements Model {
                 if(g.contains(genre)) filteredFavoriteMedia.add(m);
             }
         }
+    }
+
+    public void searchWithQuery(String query) {
+
+        if (query.equals("")) {
+            filteredMedia = new ArrayList<>(media);
+            filteredFavoriteMedia = new ArrayList<>(favoriteMedia);
+            return;
+        }
+
+        filteredMedia = filteredMedia
+                .stream()
+                .filter(e -> e.getTitle().toLowerCase().contains(query.toLowerCase()))
+                .collect(Collectors.toList());
+
+        filteredFavoriteMedia = filteredFavoriteMedia
+                .stream()
+                .filter(e -> e.getTitle().toLowerCase().contains(query.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     private void setMedia() {
