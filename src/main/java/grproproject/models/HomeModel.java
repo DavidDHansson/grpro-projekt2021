@@ -5,6 +5,7 @@ import grproproject.managers.mediaManager.MediaManager;
 import grproproject.managers.usermanager.UserManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HomeModel implements Model {
@@ -39,9 +40,9 @@ public class HomeModel implements Model {
 
     public void addFavorite(Media media) {
         UserManager.getInstance().addFavoriteToActiveUser(media.getTitle());
-        favoriteMedia.add(media);
+        favoriteMedia.add(0, media);
+        filteredFavoriteMedia.add(0, media);
         favoriteMediaString.add(media.getTitle());
-        filteredFavoriteMedia.add(media);
     }
 
     public void removeFavorite(Media media) {
@@ -88,7 +89,7 @@ public class HomeModel implements Model {
     }
 
     private void setMedia() {
-        media = new ArrayList<>(MediaManager.getInstance().getMedia());
+        media = new ArrayList<>(MediaManager.getInstance().getShuffledMedia());
         filteredMedia = new ArrayList<>(media);
     }
 
@@ -101,6 +102,9 @@ public class HomeModel implements Model {
         }
 
         filteredFavoriteMedia = new ArrayList<>(favoriteMedia);
+
+        Collections.reverse(favoriteMedia);
+        Collections.reverse(filteredFavoriteMedia);
     }
 
 }

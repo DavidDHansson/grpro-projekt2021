@@ -93,7 +93,15 @@ public class MediaManager {
         return genresLocal;
     }
 
-    public List<Media> getMedia() { return this.media; }
+    public List<Media> getShuffledMedia() {
+        List<Media> shuffledMedia = new ArrayList<>(media);
+        Collections.shuffle(shuffledMedia);
+        return shuffledMedia;
+    }
 
-    public List<String> getGenresSorted() { return genres.stream().sorted().collect(Collectors.toList());  }
+    public List<String> getGenresSorted() {
+        List<String> sortedGenres = new ArrayList<>(genres);
+        Collections.sort(sortedGenres);
+        return sortedGenres;
+    }
 }
