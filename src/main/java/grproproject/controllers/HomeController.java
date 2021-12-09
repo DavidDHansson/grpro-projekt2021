@@ -1,7 +1,5 @@
 package grproproject.controllers;
 
-import grproproject.managers.usermanager.User;
-import grproproject.managers.usermanager.UserManager;
 import grproproject.models.HomeModel;
 import grproproject.managers.mediaManager.*;
 import grproproject.models.MediaViewerModel;
@@ -14,13 +12,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -35,6 +33,9 @@ public class HomeController implements Controller {
     private Label activeUserLabel;
 
     @FXML
+    private ChoiceBox<String> genreChoiceBox;
+
+    @FXML
     public void initialize() { }
 
     public void initModel(HomeModel model) {
@@ -42,6 +43,7 @@ public class HomeController implements Controller {
         this.model = model;
         activeUserLabel.setText(model.getUserName());
         updateGridPane();
+        setupGenreChoiceBox();
     }
 
     private void updateGridPane() {
@@ -83,6 +85,27 @@ public class HomeController implements Controller {
             mainGridPane.setVgap(10);
             index++;
         }
+    }
+
+    private void setupGenreChoiceBox() {
+        genreChoiceBox.getItems().add("Show all");
+        for(String genre : model.getGenres()) {
+            genreChoiceBox.getItems().add(genre);
+        }
+
+        genreChoiceBox
+                .getSelectionModel()
+                .selectedIndexProperty()
+                .addListener((observableValue, number, t1) -> {
+                    try {
+                        model.setActiveGenre((int) observableValue.getValue());
+                        updateGridPane();
+                    } catch(Exception e) {
+                        CustomAlert.showError(e.getLocalizedMessage());
+                    }
+                });
+
+        genreChoiceBox.setValue("Show all");
     }
 
     @FXML

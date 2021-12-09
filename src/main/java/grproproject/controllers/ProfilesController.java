@@ -1,20 +1,12 @@
 package grproproject.controllers;
 
-import grproproject.managers.mediaManager.MediaManager;
 import grproproject.managers.usermanager.User;
-import grproproject.managers.usermanager.UserManager;
-import grproproject.models.HomeModel;
 import grproproject.models.ProfilesModel;
-import grproproject.services.CustomAlert;
-import grproproject.services.router.Router;
-import grproproject.services.router.Routes;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -23,7 +15,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-import java.io.IOException;
 import java.util.Optional;
 
 public class ProfilesController implements Controller {

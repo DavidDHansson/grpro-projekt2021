@@ -4,6 +4,7 @@ import grproproject.Constants;
 import grproproject.services.Helper;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MediaManager {
 
@@ -13,6 +14,7 @@ public class MediaManager {
 
     private static MediaManager instance;
     private List<Media> media;
+    private List<String> genres;
     public boolean isDoneLoading = false;
 
     public MediaManager() {
@@ -21,6 +23,7 @@ public class MediaManager {
             newMedia.addAll(loadAndGetMedia(Type.MOVIE));
             newMedia.addAll(loadAndGetMedia(Type.SERIES));
             media = newMedia;
+            genres = loadAndGetGenres(newMedia);
         } catch (Exception e) {
             System.out.println("🚨 WARNING: MediaManager failed to load media 🚨");
         }
@@ -79,7 +82,18 @@ public class MediaManager {
         return newMedia;
     }
 
-    public List<Media> getMedia() {
-        return this.media;
+    private List<String> loadAndGetGenres(List<Media> mediaLocal) {
+        List<String> genresLocal = new ArrayList<>();
+        for(Media m : mediaLocal) {
+            for(String g : m.getGenres()) {
+                if(!genresLocal.contains(g)) genresLocal.add(g);
+            }
+        }
+
+        return genresLocal;
     }
+
+    public List<Media> getMedia() { return this.media; }
+
+    public List<String> getGenresSorted() { return genres.stream().sorted().collect(Collectors.toList());  }
 }

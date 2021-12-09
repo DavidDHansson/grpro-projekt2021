@@ -11,32 +11,44 @@ public class HomeModel implements Model {
 
     private List<Media> media;
     private List<Media> favoriteMedia;
+    private List<Media> filteredMedia;
+    private List<Media> filteredFavoriteMedia;
     private List<String> favoriteMediaString;
-    private String userName;
+
+    private final String usersName;
+
     private boolean isShowingFavorite = false;
 
-    public HomeModel(String userName) {
-        this.userName = userName;
-        media = MediaManager.getInstance().getMedia();
-        loadFavoriteMedia();
+    public HomeModel(String usersName) {
+        this.usersName = usersName;
+        setMedia();
+        setFavoriteMedia();
     }
 
     public List<Media> getMedia() {
-        return isShowingFavorite ? favoriteMedia : media;
+        return isShowingFavorite ? filteredFavoriteMedia : filteredMedia;
     }
 
-    public String getUserName() { return userName; }
+    public String getUserName() {
+        return usersName;
+    }
+
+    public List<String> getGenres() {
+        return MediaManager.getInstance().getGenresSorted();
+    }
 
     public void addFavorite(Media media) {
         UserManager.getInstance().addFavoriteToActiveUser(media.getTitle());
         favoriteMedia.add(media);
         favoriteMediaString.add(media.getTitle());
+        filteredFavoriteMedia.add(media);
     }
 
     public void removeFavorite(Media media) {
         UserManager.getInstance().removeFavoriteFromActiveUser(media.getTitle());
-        favoriteMedia.removeIf(title -> title.equals(media));
+        favoriteMedia.removeIf(title -> title.getTitle().equals(media.getTitle()));
         favoriteMediaString.removeIf(title -> title.equals(media.getTitle()));
+        filteredFavoriteMedia.removeIf(title -> title.getTitle().equals(media.getTitle()));
     }
 
     public boolean isMediaFavorite(String mediaTitle) {
@@ -47,13 +59,48 @@ public class HomeModel implements Model {
         isShowingFavorite = !isShowingFavorite;
     }
 
-    private void loadFavoriteMedia() {
-        favoriteMedia = new ArrayList<>();
-        favoriteMediaString = UserManager.getInstance().getFavoritesFromActiveUser();
+    public void setActiveGenre(int index) {
 
-        for(Media m : getMedia()) {
+        // "Show all" is the genre, so reset the filters
+        if (index <= 0) {
+            filteredMedia = new ArrayList<>(media);
+            filteredFavoriteMedia = new ArrayList<>(favoriteMedia);
+            return;
+        }
+
+        String genre = getGenres().get(index);
+        filteredMedia = new ArrayList<>();
+        filteredFavoriteMedia = new ArrayList<>();
+
+        // Filter media
+        for(Media m : media) {
+            for(String g : m.getGenres()) {
+                if(g.contains(genre)) filteredMedia.add(m);
+            }
+        }
+
+        // Filter favorite media
+        for(Media m : favoriteMedia) {
+            for(String g : m.getGenres()) {
+                if(g.contains(genre)) filteredFavoriteMedia.add(m);
+            }
+        }
+    }
+
+    private void setMedia() {
+        media = new ArrayList<>(MediaManager.getInstance().getMedia());
+        filteredMedia = new ArrayList<>(media);
+    }
+
+    private void setFavoriteMedia() {
+        favoriteMedia = new ArrayList<>();
+        favoriteMediaString = new ArrayList<>(UserManager.getInstance().getFavoritesFromActiveUser());
+
+        for(Media m : media) {
             if (favoriteMediaString.contains(m.getTitle())) favoriteMedia.add(m);
         }
+
+        filteredFavoriteMedia = new ArrayList<>(favoriteMedia);
     }
 
 }

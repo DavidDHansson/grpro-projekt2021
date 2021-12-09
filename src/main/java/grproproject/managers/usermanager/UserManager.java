@@ -63,9 +63,8 @@ public class UserManager {
         }
 
         if (index < 0) { CustomAlert.showError("Error removing user"); return; }
-        User newUser = user;
-        newUser.setId(id);
-        users.set(index, newUser);
+        user.setId(id);
+        users.set(index, user);
         saveUsersToDisk();
     }
 
@@ -132,7 +131,6 @@ public class UserManager {
 
     private void saveActiveFavoritesToDisk() {
         try {
-            // Append to users favorites
             FileWriter fileWriter = new FileWriter(activeUser.getId() + Constants.fileExtension, false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
