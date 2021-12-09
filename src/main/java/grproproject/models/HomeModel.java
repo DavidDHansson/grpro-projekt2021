@@ -69,7 +69,7 @@ public class HomeModel implements Model {
             return;
         }
 
-        String genre = getGenres().get(index);
+        String genre = getGenres().get(index -1);
         filteredMedia = new ArrayList<>();
         filteredFavoriteMedia = new ArrayList<>();
 

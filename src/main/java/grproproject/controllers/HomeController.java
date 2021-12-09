@@ -98,7 +98,7 @@ public class HomeController implements Controller {
                 .selectedIndexProperty()
                 .addListener((observableValue, number, t1) -> {
                     try {
-                        model.setActiveGenre((int) observableValue.getValue());
+                        model.setActiveGenre(t1.intValue());
                         updateGridPane();
                     } catch(Exception e) {
                         CustomAlert.showError(e.getLocalizedMessage());
