@@ -3,10 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grproproject.controllers.MediaViewerController">
    <children>
       <Label fx:id="nowPlayingLabel" layoutX="265.0" layoutY="192.0" text="Now playing:" />
       <Button fx:id="fullscreenButton" layoutX="256.0" layoutY="221.0" mnemonicParsing="false" onAction="#fullscreenButtonClicked" text="Go fullscreen" />
+      <HBox fx:id="seasonsHBox" prefHeight="103.0" prefWidth="600.0" />
    </children>
 </AnchorPane>

@@ -1,16 +1,25 @@
 package grproproject.controllers;
 
+import grproproject.managers.mediaManager.Series;
 import grproproject.models.MediaViewerModel;
+import grproproject.services.CustomAlert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
 
 public class MediaViewerController implements Controller {
 
     private MediaViewerModel model;
     private boolean isFullscreen = false;
+
+    @FXML
+    private HBox seasonsHBox;
 
     @FXML
     private Label nowPlayingLabel;
@@ -23,6 +32,7 @@ public class MediaViewerController implements Controller {
         this.model = model;
 
         nowPlayingLabel.setText("Now playing: " + model.getMedia().getTitle());
+        fillSeasonsBoxHBox();
     }
 
     @FXML
@@ -35,6 +45,26 @@ public class MediaViewerController implements Controller {
 
         isFullscreen = !isFullscreen;
         fullscreenButton.setText(isFullscreen ? "Minimize screen" : "Maximize screen");
+    }
+
+    private void fillSeasonsBoxHBox() {
+        if(!(model.getMedia() instanceof Series)) return;
+        HashMap seasons = ((Series) model.getMedia()).getSeasons();
+
+        for (Object value : seasons.values()) {
+
+            ChoiceBox choiceBox = new ChoiceBox();
+
+            for(int i = 1; i <= (int) value; i++) {
+                choiceBox.getItems().add(i);
+                if(i == 1) choiceBox.setValue(i);
+                System.out.println(value + ": " + i);
+            }
+
+            seasonsHBox.getChildren().add(choiceBox);
+        }
+        Button playButton = new Button("▶");
+        seasonsHBox.getChildren().add(playButton);
     }
 
 }
