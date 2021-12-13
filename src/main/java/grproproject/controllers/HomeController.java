@@ -84,7 +84,7 @@ public class HomeController implements Controller {
             box.setOnMouseClicked(e ->
                     Router.goTo(Routes.MEDIAVIEWER, new MediaViewerModel(m), false, 600, 350));
 
-            mainGridPane.add(box, index % 3, Math.floorDiv(index, 3));
+            mainGridPane.add(box, index % 4, Math.floorDiv(index, 4));
             mainGridPane.setHgap(10);
             mainGridPane.setVgap(10);
             index++;
