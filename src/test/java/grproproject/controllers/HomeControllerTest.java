@@ -13,19 +13,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HomeControllerTest {
 
-    private List<Media> media;
-
     @BeforeEach
     void setUp() {
-        String[] genres = {"Action", "Test", "Drama"};
-        media.add(new Movie(MediaManager.Type.MOVIE, "Movie test 1", 2021, genres, 10.0));
-        media.add(new Movie(MediaManager.Type.MOVIE, "Movie test 2", 2021, genres, 10.0));
-        media.add(new Movie(MediaManager.Type.MOVIE, "Movie test 3", 2021, genres, 10.0));
-        media.add(new Movie(MediaManager.Type.MOVIE, "Movie test 4", 2021, genres, 10.0));
     }
 
     @AfterEach
     void tearDown() {
+    }
+
+    @Test
+    void initialize() {
+    }
+
+    @Test
+    void initModel() {
+    }
+
+    @Test
+    void changeUserAction() {
+    }
+
+    @Test
+    void toggleFavorite() {
     }
 
     @Test
