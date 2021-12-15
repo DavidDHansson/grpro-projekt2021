@@ -10,7 +10,7 @@ public class Helper {
         try {
             return Integer.parseInt(value.trim());
         } catch (NumberFormatException e) {
-            System.out.println("🚨 WARNING: Tried to parse: " +  value + " to int 🚨");
+            System.out.println("🚨 WARNING: Tried to parse: " + value + " to int 🚨");
             return -1;
         }
     }
@@ -21,7 +21,7 @@ public class Helper {
             Number number = format.parse(value.trim());
             return number.doubleValue();
         } catch (ParseException e) {
-            System.out.println("🚨 WARNING: Tried to parse: " +  value + " to double 🚨");
+            System.out.println("🚨 WARNING: Tried to parse: " + value + " to double 🚨");
             return -1;
         }
     }
@@ -31,7 +31,7 @@ public class Helper {
             HashMap<Integer, Integer> seasons = new HashMap<>();
             String[] seasonsArr = value.trim().split(",");
 
-            for(String i : seasonsArr) {
+            for (String i : seasonsArr) {
                 String[] s = i.trim().split("-");
                 int season = tryParseInt(s[0]);
                 int episodes = tryParseInt(s[1]);
@@ -45,7 +45,7 @@ public class Helper {
             System.out.println("🚨 WARNING: Tried converting: " + value + " to seasons hashmap 🚨");
         }
 
-        return new HashMap<Integer, Integer>();
+        return new HashMap<>();
     }
 
 }

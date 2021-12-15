@@ -1,5 +1,6 @@
 package grproproject.controllers;
 
+import grproproject.managers.mediaManager.MediaManager;
 import grproproject.managers.mediaManager.Series;
 import grproproject.models.MediaViewerModel;
 import grproproject.services.CustomAlert;
@@ -36,7 +37,8 @@ public class MediaViewerController implements Controller {
     }
 
     @FXML
-    public void initialize() { }
+    public void initialize() {
+    }
 
     @FXML
     public void fullscreenButtonClicked(ActionEvent event) {
@@ -48,17 +50,16 @@ public class MediaViewerController implements Controller {
     }
 
     private void fillSeasonsBoxHBox() {
-        if(!(model.getMedia() instanceof Series)) return;
+        if (model.getMedia().getType() == MediaManager.Type.MOVIE) return;
         HashMap seasons = ((Series) model.getMedia()).getSeasons();
 
         for (Object value : seasons.values()) {
 
             ChoiceBox choiceBox = new ChoiceBox();
 
-            for(int i = 1; i <= (int) value; i++) {
+            for (int i = 1; i <= (int) value; i++) {
                 choiceBox.getItems().add(i);
-                if(i == 1) choiceBox.setValue(i);
-                System.out.println(value + ": " + i);
+                if (i == 1) choiceBox.setValue(i);
             }
 
             seasonsHBox.getChildren().add(choiceBox);

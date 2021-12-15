@@ -1,6 +1,7 @@
 package grproproject.managers.mediaManager;
 
 import grproproject.Constants;
+import grproproject.services.CustomAlert;
 import grproproject.services.Helper;
 
 import java.util.*;
@@ -24,7 +25,7 @@ public class MediaManager {
             media = newMedia;
             genres = loadAndGetGenres(newMedia);
         } catch (Exception e) {
-            System.out.println("🚨 WARNING: MediaManager failed to load media 🚨");
+            CustomAlert.showError("WARNING: MediaManager failed to load media");
         }
     }
 

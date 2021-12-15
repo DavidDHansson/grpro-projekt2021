@@ -13,8 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Router {
 
     private static Stage stage;
@@ -22,7 +20,8 @@ public class Router {
     private static Double windowWidth = 800.0;
     private static Double windowHeight = 600.0;
 
-    private Router() { }
+    private Router() {
+    }
 
     public static void setup(Stage primaryStage, String title, double width, double height) {
         stage = primaryStage;

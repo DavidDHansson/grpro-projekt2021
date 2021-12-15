@@ -11,14 +11,12 @@ import java.util.stream.Collectors;
 
 public class HomeModel implements Model {
 
+    private final String usersName;
     private List<Media> media;
     private List<Media> favoriteMedia;
     private List<Media> filteredMedia;
     private List<Media> filteredFavoriteMedia;
     private List<String> favoriteMediaString;
-
-    private final String usersName;
-
     private boolean isShowingFavorite = false;
 
     public HomeModel(String usersName) {
@@ -70,21 +68,21 @@ public class HomeModel implements Model {
             return;
         }
 
-        String genre = getGenres().get(index -1);
+        String genre = getGenres().get(index - 1);
         filteredMedia = new ArrayList<>();
         filteredFavoriteMedia = new ArrayList<>();
 
         // Filter media
-        for(Media m : media) {
-            for(String g : m.getGenres()) {
-                if(g.contains(genre)) filteredMedia.add(m);
+        for (Media m : media) {
+            for (String g : m.getGenres()) {
+                if (g.contains(genre)) filteredMedia.add(m);
             }
         }
 
         // Filter favorite media
-        for(Media m : favoriteMedia) {
-            for(String g : m.getGenres()) {
-                if(g.contains(genre)) filteredFavoriteMedia.add(m);
+        for (Media m : favoriteMedia) {
+            for (String g : m.getGenres()) {
+                if (g.contains(genre)) filteredFavoriteMedia.add(m);
             }
         }
     }
@@ -117,7 +115,7 @@ public class HomeModel implements Model {
         favoriteMedia = new ArrayList<>();
         favoriteMediaString = new ArrayList<>(UserManager.getInstance().getFavoritesFromActiveUser());
 
-        for(Media m : media) {
+        for (Media m : media) {
             if (favoriteMediaString.contains(m.getTitle())) favoriteMedia.add(m);
         }
 

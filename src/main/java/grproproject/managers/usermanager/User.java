@@ -1,6 +1,7 @@
 package grproproject.managers.usermanager;
 
 import grproproject.managers.mediaManager.Media;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -12,12 +13,12 @@ public class User {
 
     public User(String id, String name) {
         this.id = id;
-        this.name = name.replaceAll("\\s+","");
+        this.name = name.replaceAll("\\s+", "");
     }
 
     public User(String name) {
         this.id = UUID.randomUUID().toString();
-        this.name = name.replaceAll("\\s+","");;
+        this.name = name.replaceAll("\\s+", "");
     }
 
     public void updateMyList(Media media) {

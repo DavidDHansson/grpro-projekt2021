@@ -1,18 +1,14 @@
 package grproproject.managers.usermanager;
 
 import grproproject.Constants;
-import grproproject.managers.mediaManager.Media;
 import grproproject.services.CustomAlert;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class UserManager {
 
@@ -32,8 +28,11 @@ public class UserManager {
 
     public void setActiveUser(String id) {
         int index = -1;
-        for(int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId().contains(id))  { index = i; break; }
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().contains(id)) {
+                index = i;
+                break;
+            }
         }
 
         activeUser = users.get(index);
@@ -55,14 +54,17 @@ public class UserManager {
 
     public void editUser(String id, User user) {
         int index = -100;
-        for(int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId().contains(id))  {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().contains(id)) {
                 index = i;
                 break;
             }
         }
 
-        if (index < 0) { CustomAlert.showError("Error removing user"); return; }
+        if (index < 0) {
+            CustomAlert.showError("Error removing user");
+            return;
+        }
         user.setId(id);
         users.set(index, user);
         saveUsersToDisk();
@@ -134,7 +136,7 @@ public class UserManager {
             FileWriter fileWriter = new FileWriter(activeUser.getId() + Constants.fileExtension, false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for(String title : activeUserFavorites) {
+            for (String title : activeUserFavorites) {
                 bufferedWriter.write(title + "\n");
             }
 

@@ -38,7 +38,7 @@ public class ProfilesController implements Controller {
     private void fillProfilesHBox() {
 
         // Users
-        for(User u : model.getUsers()) {
+        for (User u : model.getUsers()) {
             Label nameLabel = new Label(u.getName());
             nameLabel.setFont(new Font(18));
 
@@ -77,7 +77,7 @@ public class ProfilesController implements Controller {
         box.setAlignment(Pos.CENTER);
         box.setSpacing(5);
         box.setPadding(new Insets(10, 10, 10, 10));
-        box.setBorder(new Border(new BorderStroke(Color.BLACK,  BorderStrokeStyle.SOLID, new CornerRadii(20), BorderWidths.DEFAULT)));
+        box.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), BorderWidths.DEFAULT)));
 
         return box;
     }

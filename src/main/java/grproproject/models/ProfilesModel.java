@@ -9,7 +9,8 @@ import java.util.List;
 
 public class ProfilesModel implements Model {
 
-    public ProfilesModel() { }
+    public ProfilesModel() {
+    }
 
     public List<User> getUsers() {
         return UserManager.getInstance().getUsers();

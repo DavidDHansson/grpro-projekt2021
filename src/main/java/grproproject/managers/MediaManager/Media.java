@@ -55,7 +55,7 @@ public abstract class Media {
 
     public String getGenresString() {
         String result = "";
-        for(int i = 0; i < genres.length; i++) {
+        for (int i = 0; i < genres.length; i++) {
             result += genres[i] + (genres.length - 1 == i ? "" : ", ");
         }
 

@@ -13,5 +13,7 @@ public enum Routes {
         this.path = path;
     }
 
-    public String getPath() { return this.path; }
+    public String getPath() {
+        return this.path;
+    }
 }

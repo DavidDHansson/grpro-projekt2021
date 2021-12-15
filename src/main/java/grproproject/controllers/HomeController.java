@@ -40,7 +40,8 @@ public class HomeController implements Controller {
     private TextField searchTextField;
 
     @FXML
-    public void initialize() { }
+    public void initialize() {
+    }
 
     public void initModel(HomeModel model) {
         if (this.model != null) throw new IllegalStateException("Home model can only be initialized once");
@@ -68,17 +69,17 @@ public class HomeController implements Controller {
             ImageView posterImageView = new ImageView(image);
 
             Button addToListButton = new Button(model.isMediaFavorite(m.getTitle()) ? "Remove from favorites" : "Add to favorites");
-            addToListButton.setOnMouseClicked(e ->  {
+            addToListButton.setOnMouseClicked(e -> {
                 boolean isFavorite = model.isMediaFavorite(m.getTitle());
 
                 addToListButton.setText(!isFavorite ? "Remove from favorites" : "Add to favorites");
-                if(isFavorite) model.removeFavorite(m);
+                if (isFavorite) model.removeFavorite(m);
                 if (!isFavorite) model.addFavorite(m);
             });
 
             VBox box = new VBox(titleLabel, yearLabel, genreLabel, starsLabel, posterImageView, addToListButton);
             box.setAlignment(Pos.CENTER);
-            box.setBorder(new Border(new BorderStroke(Color.BLACK,  BorderStrokeStyle.SOLID, new CornerRadii(20), BorderWidths.DEFAULT)));
+            box.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(20), BorderWidths.DEFAULT)));
             box.setPadding(new Insets(10, 10, 10, 10));
             box.setCursor(Cursor.HAND);
             box.setOnMouseClicked(e ->
@@ -93,7 +94,7 @@ public class HomeController implements Controller {
 
     private void setupGenreChoiceBox() {
         genreChoiceBox.getItems().add("Show all");
-        for(String genre : model.getGenres()) {
+        for (String genre : model.getGenres()) {
             genreChoiceBox.getItems().add(genre);
         }
 
@@ -104,7 +105,7 @@ public class HomeController implements Controller {
                     try {
                         model.setActiveGenre(t1.intValue());
                         updateGridPane();
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         CustomAlert.showError(e.getLocalizedMessage());
                     }
                 });
