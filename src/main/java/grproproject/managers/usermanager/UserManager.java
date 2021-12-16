@@ -107,7 +107,8 @@ public class UserManager {
         activeUserFavorites = new ArrayList<>();
 
         try {
-            Scanner s = new Scanner(new File(activeUser.getId() + Constants.fileExtension));
+            String pathName = UserManager.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            Scanner s = new Scanner(new File(pathName + activeUser.getId() + Constants.fileExtension));
             while (s.hasNextLine()) {
                 activeUserFavorites.add(s.nextLine());
             }
@@ -120,7 +121,8 @@ public class UserManager {
         users = new ArrayList<>();
 
         try {
-            Scanner s = new Scanner(new File(Constants.usersFile));
+            String pathName = UserManager.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            Scanner s = new Scanner(new File(pathName + Constants.usersFile));
             while (s.hasNextLine()) {
                 String[] line = s.nextLine().split(" ");
                 users.add(new User(line[0], line[1]));
@@ -133,7 +135,8 @@ public class UserManager {
 
     private void saveActiveFavoritesToDisk() {
         try {
-            FileWriter fileWriter = new FileWriter(activeUser.getId() + Constants.fileExtension, false);
+            String pathName = UserManager.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            FileWriter fileWriter = new FileWriter(pathName + activeUser.getId() + Constants.fileExtension, false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             for (String title : activeUserFavorites) {
@@ -149,7 +152,8 @@ public class UserManager {
     private void saveUsersToDisk() {
         try {
             // Replace the users.txt
-            FileWriter fileWriter = new FileWriter(Constants.usersFile, false);
+            String pathName = UserManager.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            FileWriter fileWriter = new FileWriter(pathName + Constants.usersFile, false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             for (User u : users) {
