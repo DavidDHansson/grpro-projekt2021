@@ -17,7 +17,7 @@ public class UserManager {
     private User activeUser;
     private List<String> activeUserFavorites;
 
-    public UserManager() {
+    private UserManager() {
         loadUsersFromDisk();
     }
 

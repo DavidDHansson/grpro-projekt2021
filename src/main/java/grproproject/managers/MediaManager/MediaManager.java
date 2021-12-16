@@ -17,7 +17,7 @@ public class MediaManager {
     private List<String> genres;
     public boolean isDoneLoading = false;
 
-    public MediaManager() {
+    private MediaManager() {
         try {
             List<Media> newMedia = new ArrayList<>();
             newMedia.addAll(loadAndGetMedia(Type.MOVIE));
